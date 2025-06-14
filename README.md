@@ -1,6 +1,7 @@
 # When Geometric Deep Learning Meets Protein Language Models ☀️☀️☀️ 
  
-This is the official implementation of paper ***When Geometric Deep Learning Meets Protein Language Models*** [[arxiv](https://arxiv.org/abs/2212.03447)].
+This is the official implementation of paper ***When Geometric Deep Learning Meets Protein Language Models*** [[arxiv](https://arxiv.org/abs/2212.03447)], namely, ***Integration of pre-trained protein language models into geometric deep learning networks*** [[Communications Biology](https://www.nature.com/articles/s42003-023-05133-1)].  
+
 Our work addresses the gap that has long been ignored by the geometric deep learning community for macromolecules. That is, few studies consider
 incorporating different protein modalities to promote the representation capacity of geometric neural networks. To overcome this limitation, we 
 propose a simple but effective approach to use the pretrained language models such as ESM [[1]](#1) and ProtTrans [[2]](#2) as the feature initializer for 
@@ -39,7 +40,7 @@ We use the well-curated dataset provided by atom3d [[3]](#3). Download and unzip
 Then put the file *split-by-cath-topology/xxx* under the folder *data/TOY/xxx*.
 
 Run the following line to implement the sequential position identification task, where geometric models are required to predict the 
-sequential orders of eac residue in the protein sequence. You can select the argument **model** from '*egnn*', '*gvp*' and '*molformer*' to 
+sequential orders of each residue in the protein sequence. You can select the argument **model** from '*egnn*', '*gvp*', and '*molformer*' to 
 test different architectures. You can also examine different mechanisms to build the graph connectivity, including '*knn*', '*rball*'. 
 Also, tune **gpu** to different device numbers if you have multiple GPUs. 
 ```markdown
@@ -50,13 +51,13 @@ python main.py TOY --model=egnn  --connect=knn --gpu=0
 We use a well-constructed dataset offered by atom3d [[3]](#3). Download and unzip the data from this [link](https://zenodo.org/record/4915648#.Y56tVXZBxD8).
 Then put the file *split-by-year/xxx* under the folder *data/PSR/xxx*.
 
-Run the following line to implement the model quality assessment task. Here you can set the additional argument **plm=1** to equip the 
+Run the following line to implement the model quality assessment task. Here, you can set the additional argument **plm=1** to equip the 
 geometric graph neural networks with pretrained protein language models. 
 ```markdown
 python main.py PSR --model=egnn --plm=1
 ```
 
-### Protein-protein Interface Prediction
+### Protein-Protein Interface Prediction
 We use a well-built dataset offered by atom3d [[3]](#3). Download and unzip the data from this [link](https://zenodo.org/record/4911102).
 Then put the file *DIPS-split/xxx* under the folder *data/PPI/xxx*.
 
@@ -66,10 +67,10 @@ python main.py PPI --model=egnn --plm=1
 ```
 
 ### Protein-protein Rigid-body Docking
-We use the original [code](https://github.com/octavian-ganea/equidock_public) from EquiDock [[4]](#4) and only change the input features, which is 
+We use the original [code](https://github.com/octavian-ganea/equidock_public) from EquiDock [[4]](#4) and only change the input features, which are 
 obtained from ESM-2. Notably, this task cannot be perfectly compiled with the implementation of other tasks since the backbone models are totally distinct.
-However, the core idea are the same. We choose not to post the related code here for code consistency. If anyone finds difficulties in reproducing this task
-with ESM's features, please full an issue. 
+However, the core idea is the same. We choose not to post the related code here for code consistency. If anyone finds difficulties in reproducing this task
+with ESM's features, please full out an issue. 
 
 
 ### Binding Affinity Prediction 
@@ -82,21 +83,20 @@ for different sequence identity splits.
 python main.py LBA --model=egnn --plm=1  --lba-split=30
 ```
 
-
-
-
-
-
 ## Cite and Contact
 If you find this paper and the corresponding code interesting and helpful, 
-we would really appreciate it if you can cite the paper. Thank you! 😜  
-Moreover, we welcome any sort of relevant questions. Please do not hesitate to contact [Fang WU](mailto:fw2359@columbia.edu).
+we would really appreciate it if you could cite the paper. Thank you! :)
+Moreover, we welcome any sort of relevant questions. Please do not hesitate to contact [Fang WU](mailto:fangwu97@stanford.edu).
 ```markdown
-@article{wu2022geometric,
-  title={When Geometric Deep Learning Meets Pretrained Protein Language Models},
-  author={Wu, Fang and Tao, Yu and Radev, Dragomir and Xu, Jinbo},
-  journal={arXiv preprint arXiv:2212.03447},
-  year={2022}
+@article{wu2023integration,
+  title={Integration of pre-trained protein language models into geometric deep learning networks},
+  author={Wu, Fang and Wu, Lirong and Radev, Dragomir and Xu, Jinbo and Li, Stan Z},
+  journal={Communications Biology},
+  volume={6},
+  number={1},
+  pages={876},
+  year={2023},
+  publisher={Nature Publishing Group UK London}
 }
 ```
 
@@ -106,7 +106,7 @@ We also want to thank [MoleculeMind](http://moleculemind.com/) for its GPU resou
 
 ## References
 <a id="1">[1]</a> 
-Lin, Zeming, et al. "Evolutionary-scale prediction of atomic level protein structure with a language model." bioRxiv (2022).      
+Lin, Zeming, et al. "Evolutionary-scale prediction of atomic-level protein structure with a language model." bioRxiv (2022).      
 <a id="2">[2]</a> 
 Elnaggar, Ahmed, et al. "ProtTrans: towards cracking the language of Life's code through self-supervised deep learning and high performance computing." arXiv preprint arXiv:2007.06225 (2020).  
 <a id="3">[3]</a> 
